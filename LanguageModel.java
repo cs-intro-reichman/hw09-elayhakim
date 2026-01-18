@@ -59,13 +59,13 @@ public class LanguageModel {
 	// characters in the given list. */
 	void calculateProbabilities(List probs) {				
 		int s = 0;
-        ListIterator i = probs.listIterator(0); 
-            while (i.hasNext()) {
+        ListIterator i = probs.listIterator(0);
+        while (i.hasNext()) {
             CharData c = i.next();
             s += c.count;
         }
         double acc = 0.0;
-        i = probs.listIterator(0);
+        i = probs.listIterator(0); 
         while (i.hasNext()) {
              CharData c = i.next();
              c.p = (double) c.count / s;
@@ -78,13 +78,14 @@ public class LanguageModel {
 	char getRandomChar(List probs) {
 		double r = randomGenerator.nextDouble();
         ListIterator i = probs.listIterator(0);
+        CharData c = null; 
         while (i.hasNext()) {
-            CharData c = i.next();
+            c = i.next();
             if (c.cp > r) {
                 return c.chr;
             }
         }
-        return probs.get(probs.getSize() - 1).chr;
+        return c.chr;
     }
 
     /**
