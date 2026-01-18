@@ -59,19 +59,18 @@ public class LanguageModel {
 	// characters in the given list. */
 	void calculateProbabilities(List probs) {				
 		int s = 0;
-        ListIterator irt = probs.listIterator(0);
-        while (irt.hasNext()) {
-            CharData cd = irt.next();
-            s = s + cd.count;
+        ListIterator i = probs.listIterator(0); 
+            while (i.hasNext()) {
+            CharData c = i.next();
+            s += c.count;
         }
         double acc = 0.0;
-        ListIterator irt2 = probs.listIterator(0);
-        while (irt2.hasNext()) {
-            CharData res = irt2.next();
-            double pcalc = (double) res.count / (double) s;
-            res.p = pcalc;
-            acc = acc + pcalc;
-            res.cp = acc;
+        i = probs.listIterator(0);
+        while (i.hasNext()) {
+             CharData c = i.next();
+             c.p = (double) c.count / s;
+             acc += c.p;
+             c.cp = acc;
         }
 	}
 
