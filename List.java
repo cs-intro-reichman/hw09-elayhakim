@@ -72,17 +72,14 @@ public class List {
      *  given chr to the beginning of this list. */
     public void update(char chr) {
         Node current = first;
-        boolean f = false;
         while (current != null) {
             if (current.cp.chr == chr) {
                 current.cp.count++;
-                f=true;
+                return;
             }
             current = current.next;
         }
-        if (!f) {
-            addFirst(chr);
-        }    
+        addFirst(chr);
     }
 
     /** GIVE If the given character exists in one of the CharData objects
