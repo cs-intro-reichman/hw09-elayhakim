@@ -80,7 +80,7 @@ public class LanguageModel {
 		double r = randomGenerator.nextDouble();
         ListIterator irt = probs.listIterator(0);
         while (irt.hasNext()) {
-            CharData current = itr.next();
+            CharData current = irt.next();
             if (current.cp > r) {
                 return current.chr;
             }
